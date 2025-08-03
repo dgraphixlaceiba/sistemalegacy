@@ -1,18 +1,19 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
-const dbPath = path.join(__dirname, 'database', 'dgraphix.db');
+const fs = require('fs');
+
+const dbPath = path.resolve(__dirname, '../database/dgraphix.db');
+
+if (!fs.existsSync(dbPath)) {
+  fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+  fs.writeFileSync(dbPath, '');
+}
 
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
-    console.error('Error al abrir la base de datos:', err.message);
+    console.error('Error al conectar a la base de datos:', err.message);
   } else {
-    console.log('Base de datos conectada correctamente.');
-    // Aquí puedes crear tus tablas si no existen
-    db.run(`CREATE TABLE IF NOT EXISTS clientes (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      nombre TEXT NOT NULL,
-      telefono TEXT
-    )`);
+    console.log('Conectado a SQLite');
   }
 });
 
