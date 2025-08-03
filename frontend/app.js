@@ -1,6 +1,4 @@
-document.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('formProducto').addEventListener('submit',e=>{
-    e.preventDefault();
-    // enviar producto vía fetch al backend, actualizar tabla
-  });
-});
+document.getElementById('app').innerHTML = `
+  <p>Bienvenido al sistema DGraphix.</p>
+  <p>El backend está listo y esperando tus órdenes.</p>
+`;
