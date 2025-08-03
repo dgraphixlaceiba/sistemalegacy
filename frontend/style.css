@@ -5,3 +5,13 @@ body {
   padding: 2em;
   color: #222;
 }
+input, button, select {
+  padding: 0.5em;
+  margin: 0.5em 0;
+}
+button {
+  cursor: pointer;
+}
+#alerta {
+  color: red;
+}
