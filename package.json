@@ -1,0 +1,6 @@
+{
+  "name":"dgraphix-system",
+  "version":"1.0.0",
+  "scripts":{"start":"node backend/server.js"},
+  "dependencies":{"express":"^4","sqlite3":"^5","cors":"^2"}
+}
