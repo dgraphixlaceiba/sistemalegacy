@@ -4,6 +4,8 @@ const ventasRouter = require('./routes/ventas');
 app.use('/api/ventas', ventasRouter);
 const clientesRouter = require('./routes/clientes');
 app.use('/api/clientes', clientesRouter);
+const cajaRouter = require('./routes/caja');
+app.use('/api/caja', cajaRouter);
 
 const usuariosRouter = require('./routes/usuarios');
 app.use('/api/usuarios', usuariosRouter);
