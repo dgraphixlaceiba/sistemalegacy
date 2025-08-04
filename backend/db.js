@@ -27,6 +27,29 @@ db.serialize(() => {
     rol TEXT
   )`);
 
+  // Insertar usuarios admin y empleado si no existen
+  db.get("SELECT COUNT(*) AS count FROM usuarios", (err, row) => {
+    if (err) {
+      console.error("Error al contar usuarios:", err.message);
+      return;
+    }
+    if (row.count === 0) {
+      db.run(`INSERT INTO usuarios (usuario, password, rol) VALUES
+        ('admin', 'AdrianJosue22!', 'admin'),
+        ('axel.dgraphix', 'Corbata', 'empleado')
+      `, (err) => {
+        if (err) {
+          console.error('Error insertando usuarios iniciales:', err.message);
+        } else {
+          console.log('Usuarios iniciales insertados correctamente.');
+        }
+      });
+    }
+  });
+
+  //... el resto de creación de tablas
+});
+
   db.run(`CREATE TABLE IF NOT EXISTS clientes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre TEXT,
