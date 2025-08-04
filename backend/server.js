@@ -1,5 +1,7 @@
 const inventarioRouter = require('./routes/inventario');
 app.use('/api/inventario', inventarioRouter);
+const ventasRouter = require('./routes/ventas');
+app.use('/api/ventas', ventasRouter);
 
 const usuariosRouter = require('./routes/usuarios');
 app.use('/api/usuarios', usuariosRouter);
