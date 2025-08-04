@@ -1,3 +1,5 @@
+const usuariosRouter = require('./routes/usuarios');
+app.use('/api/usuarios', usuariosRouter);
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
