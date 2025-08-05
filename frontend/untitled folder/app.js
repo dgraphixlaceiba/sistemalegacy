@@ -58,9 +58,46 @@ function mostrarDashboard(usuario) {
 
 async function cargarInventario() {
   const contenido = document.getElementById('contenido');
-  contenido.innerHTML = '<h3>Inventario (Materia Prima)</h3>';
-  // Aquí implementa la carga y gestión de inventario desde backend
-  contenido.innerHTML += '<p>Función de inventario en construcción...</p>';
+  contenido.innerHTML = '<h3>Inventario (Materia Prima)</h3><p>Cargando...</p>';
+
+  try {
+    const res = await fetch('/api/inventario/materia-prima');
+    if (!res.ok) throw new Error('Error al cargar inventario');
+
+    const materiaPrima = await res.json();
+
+    if (materiaPrima.length === 0) {
+      contenido.innerHTML = '<h3>Inventario (Materia Prima)</h3><p>No hay registros.</p>';
+      return;
+    }
+
+    let html = '<h3>Inventario (Materia Prima)</h3><table border="1" cellpadding="5" cellspacing="0">';
+    html += `
+      <tr>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Unidad</th>
+        <th>Stock Mínimo</th>
+      </tr>
+    `;
+
+    materiaPrima.forEach(item => {
+      html += `
+        <tr>
+          <td>${item.nombre}</td>
+          <td>${item.cantidad}</td>
+          <td>${item.unidad}</td>
+          <td>${item.stock_minimo}</td>
+        </tr>
+      `;
+    });
+
+    html += '</table>';
+    contenido.innerHTML = html;
+
+  } catch (error) {
+    contenido.innerHTML = `<p style="color:red;">${error.message}</p>`;
+  }
 }
 
 async function cargarVentas() {
