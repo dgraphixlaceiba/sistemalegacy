@@ -3,8 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  root: '.', // raíz actual
-  build: {
-    outDir: 'build', // Carpeta de salida para Netlify
-  }
+  base: './',
 })
