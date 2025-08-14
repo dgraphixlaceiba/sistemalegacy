@@ -1,1 +1,0 @@
-// cost is calculated dynamically, no table needed
